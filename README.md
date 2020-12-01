@@ -6,11 +6,11 @@ This Project based on golang AST package.
 Get the AST from the source file and visit the FuncDecl type to get the information of the function.
 
 # To Run
-modify the path to the file you want to parse in the main.go and the run the following command in terminal
 ```
 go run main.go > output.txt
 ```
-the output.txt contains the Details of the functions in the sourse file you added
+It will parse all go file in current directory.
+The output.txt contains the Details of the functions in the sourse file you added.
 # To do
 - [x] get the function names from source file
 - [x] add param parse
