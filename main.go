@@ -14,9 +14,42 @@ func isPublic(temp string) bool {
 	return temp[0] >= 'A' && temp[0] <= 'Z'
 }
 
-func GetDetail(funcDecl *ast.FuncDecl)  model.FunctionInfo{
+func GetParamDetail(param *ast.Field) model.FunctionParam {
+	var res model.FunctionParam
+	for _, name := range param.Names {
+		res.ParamName = name.Name
+	}
+	res.ParamType = param.Type
+	return res
+}
+
+func GetFuncDetail(funcDecl *ast.FuncDecl) model.FunctionInfo {
 	var res model.FunctionInfo
 	res.FunctionName = funcDecl.Name.Name
+	// Get The Function Params
+	ast.Inspect(funcDecl, func(node ast.Node) bool {
+		switch x := node.(type) {
+		case *ast.FuncType:
+			{
+				if x.Params != nil {
+					for _, param := range x.Params.List {
+						res.FuncParam = append(res.FuncParam, GetParamDetail(param))
+					}
+				}
+				if x.Results != nil {
+					for _, param := range x.Results.List {
+						res.FuncReturn = append(res.FuncReturn, GetParamDetail(param))
+					}
+				}
+			}
+
+		}
+		return true
+	})
+
+	// Get The Body Of The Function
+
+	// Get The Type Of Function
 	if isPublic(res.FunctionName) {
 		res.FunctionPublicOrPrivate = "Public"
 	} else {
@@ -35,14 +68,9 @@ func main() {
 		return
 	}
 	ast.Inspect(f, func(node ast.Node) bool {
-		var s string
 		switch x := node.(type) {
 		case *ast.FuncDecl:
-			FunctionSet = append(FunctionSet, GetDetail(x))
-		}
-		d := len(s) > 0
-		if d {
-			fmt.Println(s)
+			FunctionSet = append(FunctionSet, GetFuncDetail(x))
 		}
 		return true
 	})
@@ -52,5 +80,5 @@ func main() {
 		model.ShowFunctionInfo(temp)
 		fmt.Println("-------------------------------")
 	}
-
+	_ = ast.Print(fset, f)
 }
