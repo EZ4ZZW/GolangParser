@@ -7,6 +7,7 @@ type FunctionInfo struct {
 	FunctionPublicOrPrivate string
 	FuncParam               []FunctionParam
 	FuncReturn              []FunctionParam
+	FunctionCalling         []string
 }
 
 func ShowFunctionInfo(info FunctionInfo) {

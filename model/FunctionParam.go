@@ -12,6 +12,7 @@ type FunctionParam struct {
 
 func ShowParamInfo(param FunctionParam) {
 	var TypeName string
+	// assert the type of param
 	switch x := param.ParamType.(type) {
 	case *ast.Ident:
 		TypeName = x.Name
