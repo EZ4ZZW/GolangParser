@@ -152,19 +152,6 @@ FuncReturn :
 0 : ParamType :   ParamName :funcDecl
 1 : ParamType :   ParamName :node
 -------------------------------
-FunctionName: main
-Public Or Private: Private
-FuncParam :
-0 : ParamType :string   ParamName :path
-1 : ParamType :   ParamName :info
-2 : ParamType :error   ParamName :err
-3 : ParamType :   ParamName :node
-FuncReturn :
-0 : ParamType :string   ParamName :path
-1 : ParamType :   ParamName :info
-2 : ParamType :error   ParamName :err
-3 : ParamType :   ParamName :node
--------------------------------
 -------------------------------
 ./model/FunctionInfo.go :: as follow
 FunctionName: ShowFunctionInfo
@@ -187,14 +174,3 @@ FuncReturn :
 ./model/GoSourceFile.go :: as follow
 -------------------------------
 ./test/FileTest.go :: as follow
-FunctionName: main
-Public Or Private: Private
-FuncParam :
-0 : ParamType :string   ParamName :path
-1 : ParamType :   ParamName :info
-2 : ParamType :error   ParamName :err
-FuncReturn :
-0 : ParamType :string   ParamName :path
-1 : ParamType :   ParamName :info
-2 : ParamType :error   ParamName :err
--------------------------------
